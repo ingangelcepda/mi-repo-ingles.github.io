@@ -1,0 +1,5 @@
+# Extensiones comunes que no queremos en el repo
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini

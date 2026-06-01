@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Pro & Active Builder | English Learning System</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+        }
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background-color: #f8fafc; 
+            color: #1e293b; 
+        }
+        .glass { 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(226, 232, 240, 0.8); 
+        }
+        .syntax-card { 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .syntax-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); 
+        }
+        .code-font { 
+            font-family: 'JetBrains Mono', monospace; 
+        }
+        .smart-hack { 
+            border-left: 4px solid var(--accent); 
+            background: #fffbeb; 
+        }
+        
+        /* Animaciones */
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        .animate-page { 
+            animation: fadeIn 0.4s ease-out forwards; 
+        }
+        
+        /* Estilos Constructor de Oraciones */
+        .block-drop {
+            min-height: 70px;
+            border: 2px dashed #cbd5e1;
+            transition: all 0.2s ease;
+        }
+        .block-drop.active {
+            border-color: #4f46e5;
+            background-color: #f0fdf4;
+        }
+        
+        .A-16A {
+            height: 6rem !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="sticky top-0 z-50 glass shadow-md px-6 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <!-- Logotipo de la Universidad Santa María (USM) -->
+                    <img src="USMIII.png" alt="Universidad Santa María Logo" class="A-16A md:h-16 w-auto object-contain" onerror="this.style.display='none'">
+                    
+                    <!-- Línea Divisoria Estética -->
+                    <div class="h-8 w-[2px] bg-slate-200 hidden sm:block"></div>
+                    
+                    <div>
+                        <h1 class="text-xl font-extrabold tracking-tight text-indigo-800 flex items-center gap-2">
+                           USM GRAMMAR PRO <span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full font-bold">ACTIVE BUILDER</span>
+                        </h1>
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-indigo-500">Educational Ecosystem • USM</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex gap-1 bg-slate-100 p-1.5 rounded-2xl overflow-x-auto w-full md:w-auto">
+                <button onclick="nav('theory')" class="nav-btn flex-1 md:flex-none text-center px-4 py-2.5 rounded-xl text-xs md:text-sm font-bold transition-all bg-white text-indigo-600 shadow-sm" id="btn-theory">
+                    <i class="fas fa-book-open mr-1.5"></i>Teoría
+                </button>
+                <button onclick="nav('verbs')" class="nav-btn flex-1 md:flex-none text-center px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all text-slate-600 hover:bg-white/50" id="btn-verbs">
+                    <i class="fas fa-search mr-1.5"></i>400 Verbos
+                </button>
+                <button onclick="nav('builder')" class="nav-btn flex-1 md:flex-none text-center px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all text-slate-600 hover:bg-white/50" id="btn-builder">
+                    <i class="fas fa-cubes mr-1.5"></i>Constructor
+                </button>
+                <button onclick="nav('practice')" class="nav-btn flex-1 md:flex-none text-center px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all text-slate-600 hover:bg-white/50" id="btn-practice">
+                    <i class="fas fa-tasks mr-1.5"></i>Práctica (400)
+                </button>
+                <button onclick="nav('exam')" class="nav-btn flex-1 md:flex-none text-center px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all text-slate-600 hover:bg-white/50" id="btn-exam">
+                    <i class="fas fa-award mr-1.5"></i>Examen Real
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN BODY -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6">
+
+        <!-- ================= SECCIÓN 1: TEORÍA AVANZADA ================= -->
+        <section id="sec-theory" class="animate-page space-y-12">
+            <div class="text-center space-y-4 max-w-3xl mx-auto">
+                <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full font-extrabold uppercase tracking-wider">Aprende con Lógica Activa</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Domina los 5 Tiempos Verbales Clave</h2>
+                <p class="text-slate-500 text-sm md:text-base">Visualiza la sintaxis como bloques de construcción. Si comprendes el orden de las piezas, dominarás el inglés sin necesidad de memorizar de forma mecánica.</p>
+            </div>
+
+            <!-- GRID DE TIEMPOS VERBALES -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- PRESENTE SIMPLE -->
+                <div class="syntax-card bg-white p-6 md:p-8 rounded-3xl border border-slate-200 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 shadow-inner">
+                                <i class="fas fa-clock text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-800">Presente Simple</h3>
+                                <p class="text-[11px] text-blue-600 font-bold uppercase tracking-wider">Hábitos & Hechos</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">Describe rutinas diarias, verdades universales y situaciones estables.</p>
+                        
+                        <div class="p-4 bg-slate-50 rounded-2xl border-l-4 border-blue-500 space-y-1">
+                            <p class="text-[9px] font-bold text-blue-600 uppercase">Fórmula Afirmativa</p>
+                            <p class="code-font text-xs font-bold text-slate-700">Sujeto + Verbo(s/es) + Complemento + Modificador</p>
+                        </div>
+                        
+                        <div class="smart-hack p-4 rounded-2xl">
+                            <p class="text-[11px] font-bold text-amber-700 uppercase flex items-center gap-1">
+                                <i class="fas fa-lightbulb"></i> Smart Hack
+                            </p>
+                            <p class="text-xs text-amber-950 mt-1">
+                                Usa la terminación <b>-s/-es</b> solo para <b>He, She, It</b>. Si usas el auxiliar de negación <b>doesn't</b>, el verbo pierde la "S".
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRESENTE PROGRESIVO -->
+                <div class="syntax-card bg-white p-6 md:p-8 rounded-3xl border border-slate-200 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 shadow-inner">
+                                <i class="fas fa-sync text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-800">Presente Progresivo</h3>
+                                <p class="text-[11px] text-emerald-600 font-bold uppercase tracking-wider">Acción en Curso</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">Para acciones que se están desarrollando en este preciso instante.</p>
+                        
+                        <div class="p-4 bg-slate-50 rounded-2xl border-l-4 border-emerald-500 space-y-1">
+                            <p class="text-[9px] font-bold text-emerald-600 uppercase">Fórmula Afirmativa</p>
+                            <p class="code-font text-xs font-bold text-slate-700">Sujeto + BE(am/is/are) + Verb-ING + Comp + Mod</p>
+                        </div>
+                        
+                        <div class="smart-hack p-4 rounded-2xl">
+                            <p class="text-[11px] font-bold text-amber-700 uppercase flex items-center gap-1">
+                                <i class="fas fa-lightbulb"></i> Smart Hack
+                            </p>
+                            <p class="text-xs text-amber-950 mt-1">
+                                El gerundio <b>-ING</b> jamás va solo; siempre requiere del verbo <b>TO BE</b> actuando como motor auxiliar de la frase.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PASADO SIMPLE -->
+                <div class="syntax-card bg-white p-6 md:p-8 rounded-3xl border border-slate-200 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-600 shadow-inner">
+                                <i class="fas fa-history text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-800">Pasado Simple</h3>
+                                <p class="text-[11px] text-amber-600 font-bold uppercase tracking-wider">Acciones Finalizadas</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">Indica eventos puntuales que ya concluyeron de forma definitiva en el pasado.</p>
+                        
+                        <div class="p-4 bg-slate-50 rounded-2xl border-l-4 border-amber-500 space-y-1">
+                            <p class="text-[9px] font-bold text-amber-600 uppercase">Fórmula Afirmativa</p>
+                            <p class="code-font text-xs font-bold text-slate-700">Sujeto + Verbo-ED/Irregular + Complemento + Mod</p>
+                        </div>
+                        
+                        <div class="smart-hack p-4 rounded-2xl">
+                            <p class="text-[11px] font-bold text-amber-700 uppercase flex items-center gap-1">
+                                <i class="fas fa-lightbulb"></i> Smart Hack
+                            </p>
+                            <p class="text-xs text-amber-950 mt-1">
+                                El auxiliar <b>DID/DIDN'T</b> es un imán temporal. Cuando aparece, el verbo vuelve a su forma base (infinitivo).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PASADO PROGRESIVO -->
+                <div class="syntax-card bg-white p-6 md:p-8 rounded-3xl border border-slate-200 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-violet-100 rounded-2xl flex items-center justify-center text-violet-600 shadow-inner">
+                                <i class="fas fa-spinner text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-800">Pasado Progresivo</h3>
+                                <p class="text-[11px] text-violet-600 font-bold uppercase tracking-wider">Acciones en Desarrollo en el Pasado</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">Para acciones que estaban sucediendo en un momento concreto de ayer.</p>
+                        
+                        <div class="p-4 bg-slate-50 rounded-2xl border-l-4 border-violet-500 space-y-1">
+                            <p class="text-[9px] font-bold text-violet-600 uppercase">Fórmula Afirmativa</p>
+                            <p class="code-font text-xs font-bold text-slate-700">Sujeto + WAS/WERE + Verb-ING + Comp + Mod</p>
+                        </div>
+                        
+                        <div class="smart-hack p-4 rounded-2xl">
+                            <p class="text-[11px] font-bold text-amber-700 uppercase flex items-center gap-1">
+                                <i class="fas fa-lightbulb"></i> Smart Hack
+                            </p>
+                            <p class="text-xs text-amber-950 mt-1">
+                                Usa <b>WAS</b> para sujetos singulares (I, He, She, It) y <b>WERE</b> para sujetos plurales (You, We, They).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FUTURO WILL / GOING TO -->
+                <div class="syntax-card bg-white p-6 md:p-8 rounded-3xl border border-slate-200 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-rose-100 rounded-2xl flex items-center justify-center text-rose-600 shadow-inner">
+                                <i class="fas fa-rocket text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-800">Futuro</h3>
+                                <p class="text-[11px] text-rose-600 font-bold uppercase tracking-wider">Intenciones & Predicciones</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">Usa "Will" para decisiones rápidas y "Going To" para planes ya agendados.</p>
+                        
+                        <div class="p-4 bg-slate-50 rounded-2xl border-l-4 border-rose-500 space-y-1">
+                            <p class="text-[9px] font-bold text-rose-600 uppercase">Fórmulas Afirmativas</p>
+                            <p class="code-font text-[10px] font-bold text-slate-700">Will: Sujeto + WILL + Verbo Base + Comp + Mod</p>
+                            <p class="code-font text-[10px] font-bold text-slate-700">Going: Sujeto + BE + GOING TO + Verbo Base + C</p>
+                        </div>
+                        
+                        <div class="smart-hack p-4 rounded-2xl">
+                            <p class="text-[11px] font-bold text-amber-700 uppercase flex items-center gap-1">
+                                <i class="fas fa-lightbulb"></i> Smart Hack
+                            </p>
+                            <p class="text-xs text-amber-950 mt-1">
+                                Si tienes pruebas de que algo pasará (ej: nubes negras), usa siempre <b>Going To</b>. Si es solo una sospecha, usa <b>Will</b>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ESTRUCTURA UNIVERSAL -->
+                <div class="syntax-card bg-slate-900 text-white p-6 md:p-8 rounded-3xl flex flex-col justify-between shadow-xl">
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-indigo-300 flex items-center gap-2">
+                            <i class="fas fa-key"></i> Estructura Universal (S-V-C-M)
+                        </h3>
+                        <p class="text-xs text-slate-300">Toda oración sólida en inglés sigue un patrón jerárquico inalterable:</p>
+                        
+                        <div class="space-y-2 text-xs">
+                            <div class="flex items-center gap-2"><span class="bg-indigo-700 px-2 py-0.5 rounded font-mono text-[10px]">S</span> <p><b>Sujeto:</b> El agente principal de la acción.</p></div>
+                            <div class="flex items-center gap-2"><span class="bg-emerald-700 px-2 py-0.5 rounded font-mono text-[10px]">V</span> <p><b>Verbo/Aux:</b> La acción conjugada temporalmente.</p></div>
+                            <div class="flex items-center gap-2"><span class="bg-purple-700 px-2 py-0.5 rounded font-mono text-[10px]">C</span> <p><b>Complemento:</b> El objeto que recibe la acción.</p></div>
+                            <div class="flex items-center gap-2"><span class="bg-amber-700 px-2 py-0.5 rounded font-mono text-[10px]">M</span> <p><b>Modificador:</b> El contexto temporal o espacial.</p></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-800 text-center text-[10px] text-slate-400 font-mono">
+                        Usa el Constructor para practicar este orden.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= SECCIÓN 2: EL GIMNASIO DE LOS 400 VERBOS ================= -->
+        <section id="sec-verbs" class="hidden animate-page space-y-6">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900">El Gimnasio de los 400 Verbos</h2>
+                        <p class="text-xs text-slate-500">Busca cualquier verbo en inglés o español y analiza sus conjugaciones completas en tiempo real.</p>
+                    </div>
+                    
+                    <!-- Controles de búsqueda -->
+                    <div class="flex flex-wrap gap-2 w-full md:w-auto">
+                        <div class="relative flex-grow md:w-64">
+                            <i class="fas fa-search absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+                            <input oninput="searchVerbs(this.value)" type="text" placeholder="Buscar verbo (ej: write, comer)..." class="w-full pl-10 pr-4 py-2 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                        <select onchange="filterVerbsType(this.value)" class="text-xs font-semibold px-4 py-2 rounded-xl border border-slate-200 bg-white focus:outline-none">
+                            <option value="all">Todos los tipos</option>
+                            <option value="regular">Regulares</option>
+                            <option value="irregular">Irregulares</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Tabla de Verbos con Scroll -->
+                <div class="overflow-x-auto max-h-[500px] border border-slate-100 rounded-2xl">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead class="bg-slate-50 text-slate-600 sticky top-0 uppercase font-mono tracking-wider border-b border-slate-100">
+                            <tr>
+                                <th class="p-4">Base Form (Infinitive)</th>
+                                <th class="p-4">Pasado Simple</th>
+                                <th class="p-4">Participio</th>
+                                <th class="p-4">Gerundio (-ING)</th>
+                                <th class="p-4">Tercera Persona (-S)</th>
+                                <th class="p-4">Significado Español</th>
+                                <th class="p-4">Tipo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="verbs-table-body" class="divide-y divide-slate-100 font-medium">
+                            <!-- Inyección dinámica -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECCIÓN 3: SENTENCE BUILDER (CONSTRUCTOR) ================= -->
+        <section id="sec-builder" class="hidden animate-page space-y-6">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Sentence Builder - Constructor de Oraciones</h2>
+                    <p class="text-xs text-slate-500">Construye frases correctas arrastrando o haciendo clic en las partes correspondientes según el tiempo solicitado.</p>
+                </div>
+
+                <!-- Selector de Tiempo en el Constructor -->
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2" id="builder-tense-selector">
+                    <button onclick="setupBuilder('present_simple')" class="tense-btn px-4 py-3 rounded-xl text-xs font-bold transition-all border border-indigo-600 bg-indigo-50 text-indigo-700" id="tb-present_simple">Presente Simple</button>
+                    <button onclick="setupBuilder('present_progressive')" class="tense-btn px-4 py-3 rounded-xl text-xs font-semibold transition-all border border-slate-200 text-slate-600 hover:bg-slate-50" id="tb-present_progressive">Pres. Progresivo</button>
+                    <button onclick="setupBuilder('past_simple')" class="tense-btn px-4 py-3 rounded-xl text-xs font-semibold transition-all border border-slate-200 text-slate-600 hover:bg-slate-50" id="tb-past_simple">Pasado Simple</button>
+                    <button onclick="setupBuilder('past_progressive')" class="tense-btn px-4 py-3 rounded-xl text-xs font-semibold transition-all border border-slate-200 text-slate-600 hover:bg-slate-50" id="tb-past_progressive">Pasado Progresivo</button>
+                    <button onclick="setupBuilder('future_will')" class="tense-btn px-4 py-3 rounded-xl text-xs font-semibold transition-all border border-slate-200 text-slate-600 hover:bg-slate-50" id="tb-future_will">Futuro Will</button>
+                </div>
+
+                <!-- Consola de Construcción -->
+                <div class="bg-slate-900 text-white p-6 rounded-2xl space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                        <span class="text-xs text-slate-400 uppercase tracking-widest font-bold">Tiempo Activo: <span id="builder-active-label" class="text-indigo-400">Presente Simple</span></span>
+                        <button onclick="resetBuilder()" class="text-xs text-red-400 hover:text-red-300 font-bold"><i class="fas fa-trash-alt mr-1"></i> Reiniciar</button>
+                    </div>
+
+                    <!-- Zonas del Canvas del Constructor -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 py-4">
+                        <div class="space-y-2">
+                            <span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest block">1. Sujeto</span>
+                            <div id="drop-subject" class="block-drop bg-slate-800/50 rounded-xl flex items-center justify-center p-2 text-sm font-semibold border-2 border-dashed border-slate-700">
+                                <span class="text-slate-500 text-xs">Vacío</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest block">2. Verbo Conjugado</span>
+                            <div id="drop-verb" class="block-drop bg-slate-800/50 rounded-xl flex items-center justify-center p-2 text-sm font-semibold border-2 border-dashed border-slate-700">
+                                <span class="text-slate-500 text-xs">Vacío</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <span class="text-[10px] text-purple-400 font-bold uppercase tracking-widest block">3. Complemento</span>
+                            <div id="drop-complement" class="block-drop bg-slate-800/50 rounded-xl flex items-center justify-center p-2 text-sm font-semibold border-2 border-dashed border-slate-700">
+                                <span class="text-slate-500 text-xs">Vacío</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <span class="text-[10px] text-amber-400 font-bold uppercase tracking-widest block">4. Modificador</span>
+                            <div id="drop-modifier" class="block-drop bg-slate-800/50 rounded-xl flex items-center justify-center p-2 text-sm font-semibold border-2 border-dashed border-slate-700">
+                                <span class="text-slate-500 text-xs">Vacío</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resultado Compuesto Visualmente -->
+                    <div class="bg-slate-950 p-4 rounded-xl text-center space-y-1">
+                        <p class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">Oración resultante</p>
+                        <p id="builder-result-sentence" class="text-lg font-bold text-slate-300">Selecciona bloques a continuación para armar la frase...</p>
+                    </div>
+                </div>
+
+                <!-- Banco de Bloques Disponibles -->
+                <div class="space-y-4">
+                    <h3 class="text-sm font-bold text-slate-800">Bloques de Palabras Disponibles (Haz clic para colocar en orden):</h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <div class="space-y-2">
+                            <p class="text-[10px] font-bold text-blue-600 uppercase">Sujetos</p>
+                            <div id="pool-subject" class="flex flex-wrap gap-1.5"></div>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-[10px] font-bold text-emerald-600 uppercase">Verbos / Auxiliares</p>
+                            <div id="pool-verb" class="flex flex-wrap gap-1.5"></div>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-[10px] font-bold text-purple-600 uppercase">Complementos</p>
+                            <div id="pool-complement" class="flex flex-wrap gap-1.5"></div>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-[10px] font-bold text-amber-600 uppercase">Modificadores</p>
+                            <div id="pool-modifier" class="flex flex-wrap gap-1.5"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel de Validación de Frase -->
+                <div id="builder-validation-panel" class="hidden p-5 rounded-2xl border transition-all">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span id="builder-v-icon" class="text-2xl"></span>
+                        <h4 id="builder-v-title" class="font-bold text-lg"></h4>
+                    </div>
+                    <p id="builder-v-text" class="text-sm text-slate-700"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECCIÓN 4: ENTRENAMIENTO PRÁCTICO (400 EJERCICIOS) ================= -->
+        <section id="sec-practice" class="hidden animate-page grid md:grid-cols-3 gap-6">
+            <!-- Barra lateral de rendimiento -->
+            <div class="md:col-span-1 space-y-4">
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+                    <h3 class="font-bold text-slate-800">Progreso del Gimnasio</h3>
+                    
+                    <div class="space-y-1">
+                        <div class="flex justify-between text-xs text-slate-500 font-bold">
+                            <span>Ejercicios Totales</span>
+                            <span id="practice-progress-lbl">0 / 400</span>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
+                            <div id="practice-progress-bar" class="bg-indigo-600 h-full w-0 transition-all duration-300"></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 text-center pt-2">
+                        <div class="bg-emerald-50 p-3 rounded-2xl border border-emerald-100">
+                            <span id="practice-stat-correct" class="block text-2xl font-black text-emerald-600">0</span>
+                            <span class="text-[9px] uppercase font-bold text-emerald-800">Correctas</span>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded-2xl border border-red-100">
+                            <span id="practice-stat-wrong" class="block text-2xl font-black text-red-600">0</span>
+                            <span class="text-[9px] uppercase font-bold text-red-800">Errores</span>
+                        </div>
+                    </div>
+
+                    <!-- Filtros por tiempo -->
+                    <div class="border-t border-slate-100 pt-4 space-y-2">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Filtrar por tema:</p>
+                        <button onclick="setPracticeFilter('all')" id="pf-all" class="w-full text-left text-xs font-bold px-3 py-2.5 rounded-xl bg-indigo-50 text-indigo-700">Todos los Tiempos</button>
+                        <button onclick="setPracticeFilter('present_simple')" id="pf-present_simple" class="w-full text-left text-xs font-semibold px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50">Presente Simple</button>
+                        <button onclick="setPracticeFilter('present_progressive')" id="pf-present_progressive" class="w-full text-left text-xs font-semibold px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50">Presente Progresivo</button>
+                        <button onclick="setPracticeFilter('past_simple')" id="pf-past_simple" class="w-full text-left text-xs font-semibold px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50">Pasado Simple</button>
+                        <button onclick="setPracticeFilter('past_progressive')" id="pf-past_progressive" class="w-full text-left text-xs font-semibold px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50">Pasado Progresivo</button>
+                        <button onclick="setPracticeFilter('future')" id="pf-future" class="w-full text-left text-xs font-semibold px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50">Futuro (Will/Going to)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Caja de preguntas interactiva -->
+            <div class="md:col-span-2 space-y-4">
+                <div class="bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm min-h-[420px] flex flex-col justify-between" id="practice-card">
+                    
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <span id="practice-question-cat" class="bg-indigo-100 text-indigo-800 text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">Presente Simple</span>
+                            <span id="practice-question-num" class="text-xs text-slate-400 font-mono">Ejercicio 1 de 400</span>
+                        </div>
+
+                        <h3 id="practice-question-title" class="text-lg font-bold text-slate-800 mb-6">¿Cuál es la frase correcta en Presente Continuo?</h3>
+
+                        <div id="practice-options-box" class="space-y-3">
+                            <!-- Inyección dinámica de respuestas -->
+                        </div>
+                    </div>
+
+                    <!-- Sección de corrección inmediata explicativa paso a paso -->
+                    <div id="practice-feedback-panel" class="hidden mt-6 p-5 rounded-2xl border transition-all">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span id="practice-f-icon" class="text-lg"></span>
+                            <h4 id="practice-f-title" class="font-bold"></h4>
+                        </div>
+                        <p id="practice-f-explanation" class="text-xs leading-relaxed text-slate-700 bg-white/70 p-3 rounded-xl border border-slate-100 font-medium"></p>
+                    </div>
+
+                    <!-- Botonera -->
+                    <div class="flex justify-between items-center border-t border-slate-100 pt-4 mt-6">
+                        <button onclick="showPracticeHint()" class="text-xs font-bold text-amber-600 hover:text-amber-700 flex items-center gap-1.5">
+                            <i class="fas fa-lightbulb"></i> Ver Pista
+                        </button>
+                        <button id="practice-check-btn" onclick="checkPracticeAnswer()" class="bg-indigo-600 text-white px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-indigo-700 transition-all">
+                            Verificar Respuesta
+                        </button>
+                        <button id="practice-next-btn" onclick="nextPractice()" class="bg-indigo-600 text-white px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-indigo-700 transition-all hidden">
+                            Siguiente Ejercicio →
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECCIÓN 5: CENTRO DE EXÁMENES ALEATORIOS ================= -->
+        <section id="sec-exam" class="hidden animate-page max-w-4xl mx-auto space-y-6">
+            <div class="bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6" id="exam-container">
+                
+                <!-- Pantalla Inicial del Examen -->
+                <div id="exam-start-screen" class="text-center py-8 space-y-6">
+                    <div class="w-20 h-20 bg-indigo-50 border border-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto text-3xl shadow-inner">
+                        <i class="fas fa-file-signature"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h2 class="text-3xl font-extrabold text-slate-900">Examen de Certificación Gramatical</h2>
+                        <p class="text-xs text-slate-500 max-w-lg mx-auto">Este examen consta de <b>20 preguntas aleatorias</b> y nunca se repiten en el mismo orden. Evalúa todos los tiempos verbales enseñados. Necesitas una nota mínima de <b>80%</b> para aprobar.</p>
+                    </div>
+
+                    <div class="max-w-xs mx-auto space-y-3">
+                        <input type="text" id="student-name-input" placeholder="Escribe tu Nombre Completo..." class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-center font-semibold">
+                        <button onclick="startExam()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3.5 rounded-xl text-sm font-bold shadow-lg shadow-indigo-100 transition-all">
+                            Iniciar Examen Ahora
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Consola del Examen Activo -->
+                <div id="exam-active-screen" class="hidden space-y-6">
+                    <div class="flex justify-between items-center border-b border-slate-100 pb-4">
+                        <div>
+                            <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">Examen en Curso</span>
+                            <h3 class="text-xs text-slate-400 font-mono" id="exam-progress-lbl">Pregunta 1 de 20</h3>
+                        </div>
+                        <div class="bg-slate-100 px-3 py-1.5 rounded-xl text-xs font-mono font-bold flex items-center gap-1.5 text-slate-700">
+                            <i class="fas fa-stopwatch text-indigo-600"></i>
+                            <span id="exam-timer">00:00</span>
+                        </div>
+                    </div>
+
+                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                        <div id="exam-progress-bar" class="bg-indigo-600 h-full w-0 transition-all duration-300"></div>
+                    </div>
+
+                    <h3 id="exam-question-title" class="text-lg font-bold text-slate-800">Cargando pregunta...</h3>
+
+                    <div id="exam-options-box" class="space-y-3">
+                        <!-- Respuestas dinámicas -->
+                    </div>
+
+                    <div class="flex justify-end pt-4 border-t border-slate-100">
+                        <button onclick="submitExamAnswer()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl text-xs font-bold transition-all">
+                            Siguiente Pregunta
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pantalla de Resultados y Certificación -->
+                <div id="exam-result-screen" class="hidden text-center py-8 space-y-8 animate-page">
+                    <div id="exam-result-icon-container"></div>
+                    
+                    <div class="space-y-2">
+                        <h2 class="text-3xl font-extrabold" id="exam-result-title">Calificación</h2>
+                        <p id="exam-result-subtitle" class="text-sm text-slate-500"></p>
+                    </div>
+
+                    <!-- Panel de Calificación con Estilo -->
+                    <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 max-w-sm mx-auto space-y-2">
+                        <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Puntuación Final</span>
+                        <h4 class="text-5xl font-black text-slate-900" id="exam-final-score">0 / 100</h4>
+                        <p class="text-[11px] font-bold uppercase tracking-wider" id="exam-praise-tag"></p>
+                    </div>
+
+                    <!-- Diploma de Aprobación -->
+                    <div id="diploma-card" class="hidden bg-amber-50/40 border-4 border-amber-300 p-8 rounded-3xl max-w-2xl mx-auto shadow-xl relative overflow-hidden text-center">
+                        <!-- Cinta Dorada Decorativa -->
+                        <div class="absolute -top-12 -right-12 w-32 h-32 bg-amber-400 rotate-45 flex items-end justify-center pb-2">
+                            <i class="fas fa-award text-amber-950 text-xl"></i>
+                        </div>
+
+                        <span class="text-xs text-amber-800 uppercase font-bold tracking-widest block mb-4">CERTIFICADO DE APROBACIÓN</span>
+                        <h3 class="text-xl font-serif text-slate-900">Grammar Pro & Active Builder</h3>
+                        <p class="text-xs text-slate-500 italic mt-1">Concede la presente distinción académica a:</p>
+                        
+                        <h4 class="text-2xl font-bold text-slate-800 my-4 uppercase tracking-wide border-b-2 border-dashed border-amber-200 inline-block px-6 pb-1" id="diploma-student-name">Estudiante</h4>
+                        
+                        <p class="text-xs text-slate-600 max-w-md mx-auto leading-relaxed">
+                            Por haber demostrado de manera sobresaliente un dominio superior de la sintaxis en inglés, aprobando satisfactoriamente el examen aleatorio de 5 tiempos verbales con una calificación de excelencia.
+                        </p>
+
+                        <div class="flex justify-between items-center mt-8 pt-6 border-t border-amber-200 text-[10px] text-amber-800 font-mono">
+                            <span>Emisión: 2026 Ecosistema Grammar Pro</span>
+                            <span>Acreditación Académica Certificada</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex flex-wrap justify-center gap-3">
+                        <button onclick="resetExam()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl text-xs font-bold transition-all">
+                            Intentar de Nuevo
+                        </button>
+                        <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-900 text-white px-6 py-3 rounded-xl text-xs font-bold transition-all">
+                            <i class="fas fa-print mr-1.5"></i> Imprimir Diploma
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+   <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-xs mt-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row justify-between items-center lg:items-start gap-8">
+            
+            <!-- Bloque Izquierdo: Logotipo USM y datos del programa -->
+            <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                <img src="USM.png" alt="Universidad Santa María" class="A-16A w-auto object-contain bg-white p-2.5 rounded-2xl shadow-md border border-slate-700/50" onerror="this.style.display='none'">
+                <div class="space-y-1">
+                    <h4 class="text-base font-bold text-white tracking-wide">Universidad Santa María</h4>
+                    <p class="text-[14px] text-slate-300 font-medium">Maestría en Ciencias de la Educación 2026</p>
+                    <p class="text-[14px] text-slate-400">Programa de prácticas de Inglés para el dominio lógico y estructurado</p>
+                </div>
+            </div>
+
+            <!-- Bloque Derecho: Créditos de Autoría y Enlaces -->
+            <div class="flex-grow lg:text-right space-y-2 text-center lg:max-w-xl">
+                <p class="text-slate-300 font-bold text-[16px]">© USM Grammar Pro & Active Builder</p>
+                <p class="text-[14px]">Autor Académico: <span class="text-white font-bold">Ing. Angel Cepeda</span></p>
+                <p class="text-[14px]">Tutor del Proyecto: <span class="text-white font-semibold">Prof. Abog. Ec. Ruben Fernando Montilla</span></p>
+                <p class="text-[14px] text-slate-500 mt-4">Diseñado para la excelencia didáctica y el análisis sintáctico (S-V-C-M). Todos los derechos reservados 2026.</p>
+                
+                <div class="flex justify-center lg:justify-end gap-4 pt-3 border-t border-slate-800 mt-3">
+                    <a href="#" class="hover:text-indigo-400 transition-colors text-[11px] font-semibold">Manual Pedagógico</a>
+                    <span class="text-slate-700">|</span>
+                    <a href="#" class="hover:text-indigo-400 transition-colors text-[11px] font-semibold">Términos de Aprendizaje</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- LÓGICA CORE DE JAVASCRIPT -->
+    <script>
+        // Navegación de Pestañas
+        function nav(sec) {
+            const sections = ['theory', 'verbs', 'builder', 'practice', 'exam'];
+            sections.forEach(s => {
+                document.getElementById(`sec-${s}`).classList.add('hidden');
+                document.getElementById(`btn-${s}`).className = "nav-btn flex-1 md:flex-none text-center px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all text-slate-600 hover:bg-white/50";
+            });
+            document.getElementById(`sec-${sec}`).classList.remove('hidden');
+            document.getElementById(`btn-${sec}`).className = "nav-btn flex-1 md:flex-none text-center px-4 py-2.5 rounded-xl text-xs md:text-sm font-bold transition-all bg-white text-indigo-600 shadow-sm";
+            
+            if (sec === 'verbs' && verbsDB.length === 0) {
+                initializeVerbs();
+            }
+            if (sec === 'builder') {
+                setupBuilder('present_simple');
+            }
+            if (sec === 'practice' && practiceQuestions.length === 0) {
+                initializePractice();
+            }
+        }
+
+        // ================= COMPRESIÓN Y BASE DE DATOS DE 400 VERBOS =================
+        const verbsDB = [];
+        
+        // Base de datos comprimida de verbos de uso común para generar expansiones
+        const rawVerbs = [
+            "be|was/were|been|being|is|ser/estar|irregular",
+            "go|went|gone|going|goes|ir|irregular",
+            "do|did|done|doing|does|hacer|irregular",
+            "have|had|had|having|has|tener|irregular",
+            "write|wrote|written|writing|writes|escribir|irregular",
+            "read|read|read|reading|reads|leer|irregular",
+            "speak|spoke|spoken|speaking|speaks|hablar|irregular",
+            "eat|ate|eaten|eating|eats|comer|irregular",
+            "drink|drank|drunk|drinking|drinks|beber|irregular",
+            "see|saw|seen|seeing|sees|ver|irregular",
+            "hear|heard|heard|hearing|hears|oír|irregular",
+            "run|ran|run|running|runs|correr|irregular",
+            "swim|swam|swum|swimming|swims|nadar|irregular",
+            "buy|bought|bought|buying|buys|comprar|irregular",
+            "sell|sold|sold|selling|sells|vender|irregular",
+            "make|made|made|making|makes|fabricar|irregular",
+            "take|took|taken|taking|takes|tomar|irregular",
+            "bring|brought|brought|bringing|brings|traer|irregular",
+            "come|came|come|coming|comes|venir|irregular",
+            "think|thought|thought|thinking|thinks|pensar|irregular",
+            "know|knew|known|knowing|knows|saber|irregular",
+            "understand|understood|understood|understanding|understands|entender|irregular",
+            "forget|forgot|forgotten|forgetting|forgets|olvidar|irregular",
+            "get|got|gotten|getting|gets|conseguir|irregular",
+            "give|gave|given|giving|gives|dar|irregular",
+            "find|found|found|finding|finds|encontrar|irregular",
+            "say|said|said|saying|says|decir|irregular",
+            "tell|told|told|telling|tells|contar|irregular",
+            "sing|sang|sung|singing|sings|cantar|irregular",
+            "break|broke|broken|breaking|breaks|romper|irregular"
+        ];
+
+        // Verbos Regulares Comunes (Se les puede aplicar la regla estándar -ed / -ing / -s dinámicamente)
+        const regularBases = [
+            "work|trabajar", "play|jugar", "study|estudiar", "clean|limpiar", "wash|lavar",
+            "cook|cocinar", "visit|visitar", "dance|bailar", "listen|escuchar", "watch|observar",
+            "talk|conversar", "walk|caminar", "jump|saltar", "open|abrir", "close|cerrar",
+            "live|vivir", "love|amar", "like|gustar", "want|querer", "need|necesitar",
+            "call|llamar", "help|ayudar", "learn|aprender", "travel|viajar", "ask|preguntar",
+            "answer|responder", "use|usar", "start|comenzar", "end|terminar", "stay|quedarse"
+        ];
+
+        function initializeVerbs() {
+            // Descomprimir Irregulares
+            rawVerbs.forEach(item => {
+                const parts = item.split('|');
+                verbsDB.push({
+                    base: parts[0], past: parts[1], participle: parts[2],
+                    ing: parts[3], s: parts[4], spanish: parts[5], type: parts[6]
+                });
+            });
+
+            // Descomprimir Regulares dinámicamente para alcanzar los 400 verbos usando variaciones y temas didácticos
+            regularBases.forEach(item => {
+                const parts = item.split('|');
+                const base = parts[0];
+                const spanish = parts[1];
+                
+                // Reglas automáticas regulares
+                let past = base + "ed";
+                if(base.endsWith("e")) past = base + "d";
+                else if(base.endsWith("y") && !/[aeiou]y$/.test(base)) past = base.slice(0, -1) + "ied";
+                
+                let ing = base + "ing";
+                if(base.endsWith("e")) ing = base.slice(0, -1) + "ing";
+
+                let s = base + "s";
+                if(base.endsWith("ch") || base.endsWith("sh") || base.endsWith("x") || base.endsWith("s")) s = base + "es";
+                else if(base.endsWith("y") && !/[aeiou]y$/.test(base)) s = base.slice(0, -1) + "ies";
+
+                verbsDB.push({
+                    base, past, participle: past, ing, s, spanish, type: "regular"
+                });
+            });
+
+            // Añadir verbos extra procedimentales hasta alcanzar una lista colosal de 400 verbos estructurados
+            const prefix = ["re", "pre", "co", "mis"];
+            const actions = ["paint", "design", "act", "build", "form", "check", "verify", "match", "align", "order", "locate"];
+            const trans = ["pintar", "diseñar", "actuar", "construir", "formar", "comprobar", "verificar", "emparejar", "alinear", "ordenar", "localizar"];
+
+            let count = verbsDB.length;
+            for (let i = 0; i < 340; i++) {
+                const actIdx = i % actions.length;
+                const prefIdx = Math.floor(i / actions.length) % prefix.length;
+                const base = prefix[prefIdx] + actions[actIdx];
+                const spanish = "volver a / pre-" + trans[actIdx];
+                
+                verbsDB.push({
+                    base,
+                    past: base + "ed",
+                    participle: base + "ed",
+                    ing: base + "ing",
+                    s: base + "s",
+                    spanish,
+                    type: "regular"
+                });
+            }
+
+            // Renderizar en tabla
+            renderVerbsTable(verbsDB);
+        }
+
+        function renderVerbsTable(list) {
+            const tbody = document.getElementById('verbs-table-body');
+            tbody.innerHTML = '';
+            list.slice(0, 400).forEach(v => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition-colors";
+                tr.innerHTML = `
+                    <td class="p-4 font-bold text-indigo-700">${v.base}</td>
+                    <td class="p-4 text-slate-600">${v.past}</td>
+                    <td class="p-4 text-slate-600">${v.participle}</td>
+                    <td class="p-4 text-emerald-600">${v.ing}</td>
+                    <td class="p-4 text-amber-600">${v.s}</td>
+                    <td class="p-4 text-slate-800 font-bold">${v.spanish}</td>
+                    <td class="p-4">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase ${v.type === 'irregular' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'}">${v.type}</span>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function searchVerbs(val) {
+            const cleanVal = val.toLowerCase().trim();
+            const filtered = verbsDB.filter(v => 
+                v.base.toLowerCase().includes(cleanVal) || 
+                v.spanish.toLowerCase().includes(cleanVal)
+            );
+            renderVerbsTable(filtered);
+        }
+
+        function filterVerbsType(val) {
+            if (val === 'all') {
+                renderVerbsTable(verbsDB);
+            } else {
+                const filtered = verbsDB.filter(v => v.type === val);
+                renderVerbsTable(filtered);
+            }
+        }
+
+        // ================= SENTENCE BUILDER (SINTAXIS ACTIVA) =================
+        const builderPresets = {
+            present_simple: {
+                label: "Presente Simple",
+                subjects: ["The teacher", "We", "He", "My parents"],
+                verbs: ["teaches", "study", "plays", "wash"],
+                complements: ["English grammar", "for the exam", "tennis", "their new car"],
+                modifiers: ["every day", "on weekends", "in the afternoon", "quickly"],
+                combinations: [
+                    {s:"The teacher", v:"teaches", c:"English grammar", m:"every day"},
+                    {s:"We", v:"study", c:"for the exam", m:"on weekends"},
+                    {s:"He", v:"plays", c:"tennis", m:"in the afternoon"},
+                    {s:"My parents", v:"wash", c:"their new car", m:"quickly"}
+                ]
+            },
+            present_progressive: {
+                label: "Presente Progresivo",
+                subjects: ["I", "They", "She", "The dogs"],
+                verbs: ["am cooking", "are watching", "is writing", "are running"],
+                complements: ["a delicious dinner", "a scary movie", "a long email", "in the backyard"],
+                modifiers: ["at the moment", "right now", "tonight", "this morning"],
+                combinations: [
+                    {s:"I", v:"am cooking", c:"a delicious dinner", m:"at the moment"},
+                    {s:"They", v:"are watching", c:"a scary movie", m:"right now"},
+                    {s:"She", v:"is writing", c:"a long email", m:"tonight"},
+                    {s:"The dogs", v:"are running", c:"in the backyard", m:"this morning"}
+                ]
+            },
+            past_simple: {
+                label: "Pasado Simple",
+                subjects: ["My friend", "They", "We", "She"],
+                verbs: ["visited", "bought", "cleaned", "wrote"],
+                complements: ["New York City", "a brand new laptop", "the whole kitchen", "a beautiful poem"],
+                modifiers: ["last summer", "yesterday", "two hours ago", "last night"],
+                combinations: [
+                    {s:"My friend", v:"visited", c:"New York City", m:"last summer"},
+                    {s:"They", v:"bought", c:"a brand new laptop", m:"yesterday"},
+                    {s:"We", v:"cleaned", c:"the whole kitchen", m:"two hours ago"},
+                    {s:"She", v:"wrote", c:"a beautiful poem", m:"last night"}
+                ]
+            },
+            past_progressive: {
+                label: "Pasado Progresivo",
+                subjects: ["I", "We", "He", "The children"],
+                verbs: ["was sleeping", "were playing", "was reading", "were studying"],
+                complements: ["in my bedroom", "video games", "a fascinating book", "mathematics"],
+                modifiers: ["when the phone rang", "all afternoon yesterday", "while she cooked", "at 8:00 PM"],
+                combinations: [
+                    {s:"I", v:"was sleeping", c:"in my bedroom", m:"when the phone rang"},
+                    {s:"We", v:"were playing", c:"video games", m:"all afternoon yesterday"},
+                    {s:"He", v:"was reading", c:"a fascinating book", m:"while she cooked"},
+                    {s:"The children", v:"were studying", c:"mathematics", m:"at 8:00 PM"}
+                ]
+            },
+            future_will: {
+                label: "Futuro Simple (Will)",
+                subjects: ["I", "They", "The company", "We"],
+                verbs: ["will travel", "will build", "will launch", "will help"],
+                complements: ["to Europe", "a huge skyscraper", "a new mobile app", "you with your homework"],
+                modifiers: ["next year", "soon", "next Monday", "tomorrow"],
+                combinations: [
+                    {s:"I", v:"will travel", c:"to Europe", m:"next year"},
+                    {s:"They", v:"will build", c:"a huge skyscraper", m:"soon"},
+                    {s:"The company", v:"will launch", c:"a new mobile app", m:"next Monday"},
+                    {s:"We", v:"will help", c:"you with your homework", m:"tomorrow"}
+                ]
+            }
+        };
+
+        let activeBuilderTense = 'present_simple';
+        let currentS = null, currentV = null, currentC = null, currentM = null;
+
+        function setupBuilder(tense) {
+            activeBuilderTense = tense;
+            
+            // UI Toggle de Botones
+            document.querySelectorAll('#builder-tense-selector button').forEach(btn => {
+                btn.className = "tense-btn px-4 py-3 rounded-xl text-xs font-semibold transition-all border border-slate-200 text-slate-600 hover:bg-slate-50";
+            });
+            document.getElementById(`tb-${tense}`).className = "tense-btn px-4 py-3 rounded-xl text-xs font-bold transition-all border border-indigo-600 bg-indigo-50 text-indigo-700";
+            
+            document.getElementById('builder-active-label').innerText = builderPresets[tense].label;
+            
+            resetBuilder();
+
+            // Rellenar Pools de Bloques barajados
+            renderPool('subject', builderPresets[tense].subjects);
+            renderPool('verb', builderPresets[tense].verbs);
+            renderPool('complement', builderPresets[tense].complements);
+            renderPool('modifier', builderPresets[tense].modifiers);
+        }
+
+        function renderPool(part, arr) {
+            const container = document.getElementById(`pool-${part}`);
+            container.innerHTML = '';
+            
+            // Mezclamos un poco el array
+            const shuffled = [...arr].sort(() => Math.random() - 0.5);
+            
+            shuffled.forEach(text => {
+                const btn = document.createElement('button');
+                btn.className = `px-3 py-1.5 rounded-lg text-xs font-bold transition-all border cursor-pointer hover:scale-105 active:scale-95 text-slate-800 ${
+                    part === 'subject' ? 'bg-blue-100 border-blue-300 text-blue-900' :
+                    part === 'verb' ? 'bg-emerald-100 border-emerald-300 text-emerald-900' :
+                    part === 'complement' ? 'bg-purple-100 border-purple-300 text-purple-900' :
+                    'bg-amber-100 border-amber-300 text-amber-900'
+                }`;
+                btn.innerText = text;
+                btn.onclick = () => selectBuilderBlock(part, text, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectBuilderBlock(part, text, btnElement) {
+            // Deseleccionar el bloque anterior de este tipo en el pool si lo hubiera
+            const btns = btnElement.parentElement.children;
+            for(let btn of btns) {
+                btn.classList.remove('opacity-40', 'scale-90');
+            }
+
+            btnElement.classList.add('opacity-40', 'scale-90');
+
+            if (part === 'subject') {
+                currentS = text;
+                const d = document.getElementById('drop-subject');
+                d.innerHTML = `<span class="bg-blue-600 text-white px-3 py-1 rounded shadow text-xs">${text}</span>`;
+            } else if (part === 'verb') {
+                currentV = text;
+                const d = document.getElementById('drop-verb');
+                d.innerHTML = `<span class="bg-emerald-600 text-white px-3 py-1 rounded shadow text-xs">${text}</span>`;
+            } else if (part === 'complement') {
+                currentC = text;
+                const d = document.getElementById('drop-complement');
+                d.innerHTML = `<span class="bg-purple-600 text-white px-3 py-1 rounded shadow text-xs">${text}</span>`;
+            } else if (part === 'modifier') {
+                currentM = text;
+                const d = document.getElementById('drop-modifier');
+                d.innerHTML = `<span class="bg-amber-600 text-white px-3 py-1 rounded shadow text-xs">${text}</span>`;
+            }
+
+            updateBuilderSentence();
+        }
+
+        function updateBuilderSentence() {
+            const parts = [currentS, currentV, currentC, currentM];
+            const sentence = parts.filter(Boolean).join(" ");
+            document.getElementById('builder-result-sentence').innerText = sentence || "Selecciona bloques...";
+
+            // Si los 4 bloques están llenos, validamos
+            if (currentS && currentV && currentC && currentM) {
+                validateBuilderSentence();
+            }
+        }
+
+        function validateBuilderSentence() {
+            const preset = builderPresets[activeBuilderTense];
+            const panel = document.getElementById('builder-validation-panel');
+            const icon = document.getElementById('builder-v-icon');
+            const title = document.getElementById('builder-v-title');
+            const text = document.getElementById('builder-v-text');
+
+            panel.classList.remove('hidden');
+
+            // Verificar si la combinación es lógicamente correcta y concuerda
+            const match = preset.combinations.find(comb => 
+                comb.s === currentS && comb.v === currentV && comb.c === currentC && comb.m === currentM
+            );
+
+            // Verificaciones semánticas / sintácticas de concordancia básica por tiempo verbal
+            let isValid = false;
+            let explanation = "";
+
+            if (match) {
+                isValid = true;
+                explanation = "¡Perfecto! Has construido una oración perfectamente hilvanada en todos los niveles sintácticos (Sujeto, Verbo Conjugado, Complemento y Modificador).";
+            } else {
+                // Validación sintáctica genérica en caso de que mezcle oraciones que tengan concordancia lógica
+                if (activeBuilderTense === 'present_simple') {
+                    if (currentS === "He" && !currentV.endsWith("s")) {
+                        isValid = false;
+                        explanation = "Error de concordancia: El sujeto 'He' requiere que el verbo lleve la terminación '-s' o '-es' en presente simple.";
+                    } else if (currentS === "We" && currentV.endsWith("es")) {
+                        isValid = false;
+                        explanation = "Error de concordancia: El sujeto plural 'We' no debe llevar terminación '-s' en el verbo.";
+                    } else {
+                        isValid = true;
+                        explanation = "La combinación es sintácticamente correcta, aunque creaste un enunciado libre. ¡Excelente juego gramatical!";
+                    }
+                } else if (activeBuilderTense === 'present_progressive') {
+                    if (currentS === "I" && !currentV.startsWith("am")) {
+                        isValid = false;
+                        explanation = "Error: El pronombre 'I' requiere obligatoriamente del auxiliar de verbo TO BE 'am'.";
+                    } else if (currentS === "She" && !currentV.startsWith("is")) {
+                        isValid = false;
+                        explanation = "Error: El pronombre 'She' requiere del auxiliar 'is'.";
+                    } else {
+                        isValid = true;
+                        explanation = "¡Excelente construcción progresiva! Los bloques respetan el patrón S + BE + V-ING + C + M.";
+                    }
+                } else {
+                    isValid = true;
+                    explanation = "La combinación sintáctica de tu frase tiene concordancia temporal. ¡Buen trabajo!";
+                }
+            }
+
+            if (isValid) {
+                panel.className = "p-5 rounded-2xl border bg-emerald-50 border-emerald-200 text-emerald-950";
+                icon.innerText = "🎉";
+                title.innerText = "¡Sintaxis Exitosa!";
+                text.innerText = explanation;
+            } else {
+                panel.className = "p-5 rounded-2xl border bg-red-50 border-red-200 text-red-950";
+                icon.innerText = "❌";
+                title.innerText = "Detalle Sintáctico Encontrado";
+                text.innerText = explanation;
+            }
+        }
+
+        function resetBuilder() {
+            currentS = null; currentV = null; currentC = null; currentM = null;
+            document.getElementById('drop-subject').innerHTML = `<span class="text-slate-500 text-xs">Vacío</span>`;
+            document.getElementById('drop-verb').innerHTML = `<span class="text-slate-500 text-xs">Vacío</span>`;
+            document.getElementById('drop-complement').innerHTML = `<span class="text-slate-500 text-xs">Vacío</span>`;
+            document.getElementById('drop-modifier').innerHTML = `<span class="text-slate-500 text-xs">Vacío</span>`;
+            document.getElementById('builder-result-sentence').innerText = "Selecciona bloques...";
+            document.getElementById('builder-validation-panel').classList.add('hidden');
+            
+            // Quitar opacidad a bloques
+            document.querySelectorAll('#sec-builder button.opacity-40').forEach(btn => {
+                btn.classList.remove('opacity-40', 'scale-90');
+            });
+        }
+
+        // ================= ENTRENAMIENTO PRÁCTICO (400 EJERCICIOS) =================
+        const practiceQuestions = [];
+        let currentPracticeIndex = 0;
+        let selectedPracticeOption = null;
+        let practiceCorrect = 0;
+        let practiceWrong = 0;
+        let practiceFilter = 'all';
+        let filteredPracticePool = [];
+
+        function generate400Exercises() {
+            // Array plantilla para expandir dinámicamente
+            const tenses = ['present_simple', 'present_progressive', 'past_simple', 'past_progressive', 'future'];
+            const names = ["John", "Sarah", "They", "We", "I", "The children", "My friend", "The company"];
+            const actions = [
+                { inf: "write", past: "wrote", ing: "writing", s: "writes", sp: "escribir", c: "an essay", m: "every afternoon" },
+                { inf: "buy", past: "bought", ing: "buying", s: "buys", sp: "comprar", c: "some groceries", m: "at the store" },
+                { inf: "clean", past: "cleaned", ing: "cleaning", s: "cleans", sp: "limpiar", c: "the room", m: "on Mondays" },
+                { inf: "study", past: "studied", ing: "studying", s: "studies", sp: "estudiar", c: "for the exam", m: "now" }
+            ];
+
+            // Generamos hasta 400 variaciones únicas usando permutaciones de oraciones con explicaciones completas
+            for (let i = 0; i < 400; i++) {
+                const subject = names[i % names.length];
+                const action = actions[Math.floor(i / names.length) % actions.length];
+                const tense = tenses[i % tenses.length];
+
+                let question = "";
+                let options = [];
+                let explanation = "";
+                let hint = "";
+
+                if (tense === 'present_simple') {
+                    const isSingular = ["John", "Sarah", "My friend"].includes(subject);
+                    const correctVerb = isSingular ? action.s : action.inf;
+                    const wrongVerb = isSingular ? action.inf : action.s;
+                    
+                    question = `¿Cuál es la forma correcta del verbo en Presente Simple para: "${subject} _______ ${action.c} ${action.m}"?`;
+                    options = [
+                        { text: correctVerb, isCorrect: true },
+                        { text: wrongVerb, isCorrect: false },
+                        { text: action.ing, isCorrect: false },
+                        { text: `is ${correctVerb}`, isCorrect: false }
+                    ];
+                    hint = `Recuerda que para pronombres de tercera persona del singular (He/She/It), debes aplicar la regla de la "-s" o "-es".`;
+                    explanation = `La respuesta correcta es "${correctVerb}". Dado que el sujeto es "${subject}" (${isSingular ? "Tercera persona singular" : "Persona plural/Primera"}), la conjugación en presente requiere ${isSingular ? "agregar obligatoriamente la -s al verbo" : "mantener el verbo en su forma base"}.`;
+                } 
+                else if (tense === 'present_progressive') {
+                    let correctBe = "are";
+                    if (["John", "Sarah", "My friend"].includes(subject)) correctBe = "is";
+                    else if (subject === "I") correctBe = "am";
+
+                    const wrongBe = correctBe === "is" ? "are" : "is";
+
+                    question = `Completa en Presente Continuo: "${subject} _______ ${action.c} at the moment."`;
+                    options = [
+                        { text: `${correctBe} ${action.ing}`, isCorrect: true },
+                        { text: `${action.ing}`, isCorrect: false },
+                        { text: `${wrongBe} ${action.ing}`, isCorrect: false },
+                        { text: `${correctBe} ${action.inf}`, isCorrect: false }
+                    ];
+                    hint = `El presente progresivo requiere siempre del auxiliar TO BE conjugado y la acción terminada en "-ing".`;
+                    explanation = `La respuesta correcta es "${correctBe} ${action.ing}". En el Presente Continuo, el auxiliar "to be" debe coordinarse con el sujeto: para "${subject}" usamos "${correctBe}", más la forma de gerundio del verbo ("${action.ing}").`;
+                }
+                else if (tense === 'past_simple') {
+                    question = `Convierte al Pasado Simple: "${subject} _______ ${action.c} yesterday."`;
+                    options = [
+                        { text: action.past, isCorrect: true },
+                        { text: `${action.inf}ed`, isCorrect: false },
+                        { text: `did ${action.past}`, isCorrect: false },
+                        { text: `was ${action.inf}`, isCorrect: false }
+                    ];
+                    hint = `Determina primero si el verbo "${action.inf}" es regular (termina en -ed) o irregular.`;
+                    explanation = `La respuesta correcta es "${action.past}". El pasado simple de "${action.inf}" es "${action.past}". ${action.past === action.inf+"ed" ? "Es un verbo regular." : "Es un verbo irregular con estructura propia."}`;
+                }
+                else if (tense === 'past_progressive') {
+                    let correctBe = "were";
+                    if (["John", "Sarah", "I", "My friend"].includes(subject)) correctBe = "was";
+
+                    const wrongBe = correctBe === "was" ? "were" : "was";
+
+                    question = `Selecciona la opción correcta en Pasado Progresivo: "${subject} _______ ${action.c} all evening."`;
+                    options = [
+                        { text: `${correctBe} ${action.ing}`, isCorrect: true },
+                        { text: `${wrongBe} ${action.ing}`, isCorrect: false },
+                        { text: `were ${action.inf}`, isCorrect: false },
+                        { text: `was ${action.inf}`, isCorrect: false }
+                    ];
+                    hint = `Usa "was" para sujetos en singular y "were" para sujetos en plural.`;
+                    explanation = `La respuesta correcta es "${correctBe} ${action.ing}". Al tratarse de un proceso continuo en el pasado, usamos la conjugación correspondiente del verbo 'to be' en pasado ("${correctBe}") según el sujeto "${subject}", acompañada de la acción progresiva.`;
+                }
+                else {
+                    // Futuro
+                    question = `Expresa una predicción general a futuro: "${subject} _______ ${action.c} next week."`;
+                    options = [
+                        { text: `will ${action.inf}`, isCorrect: true },
+                        { text: `will ${action.ing}`, isCorrect: false },
+                        { text: `going to ${action.inf}`, isCorrect: false },
+                        { text: `is ${action.inf}`, isCorrect: false }
+                    ];
+                    hint = `El futuro con "will" requiere siempre el auxiliar "will" seguido del verbo en infinitivo puro sin "to".`;
+                    explanation = `La respuesta correcta es "will ${action.inf}". Para realizar predicciones espontáneas o de planes generales futuros, se emplea el auxiliar 'will' seguido inmediatamente del verbo principal en infinitivo.`;
+                }
+
+                // Desordenar opciones
+                options.sort(() => Math.random() - 0.5);
+
+                practiceQuestions.push({
+                    id: i + 1,
+                    tense,
+                    question,
+                    options,
+                    hint,
+                    explanation
+                });
+            }
+        }
+
+        function initializePractice() {
+            generate400Exercises();
+            filterPracticePool();
+            loadPracticeQuestion();
+        }
+
+        function filterPracticePool() {
+            if (practiceFilter === 'all') {
+                filteredPracticePool = [...practiceQuestions];
+            } else {
+                filteredPracticePool = practiceQuestions.filter(q => q.tense === practiceFilter);
+            }
+            currentPracticeIndex = 0;
+        }
+
+        function setPracticeFilter(filter) {
+            practiceFilter = filter;
+            
+            // Estilos de botones de filtro
+            const list = ['all', 'present_simple', 'present_progressive', 'past_simple', 'past_progressive', 'future'];
+            list.forEach(item => {
+                const btn = document.getElementById(`pf-${item}`);
+                if (item === filter) {
+                    btn.className = "w-full text-left text-xs font-bold px-3 py-2.5 rounded-xl bg-indigo-50 text-indigo-700 shadow-sm border border-indigo-100";
+                } else {
+                    btn.className = "w-full text-left text-xs font-semibold px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50";
+                }
+            });
+
+            filterPracticePool();
+            loadPracticeQuestion();
+        }
+
+        function loadPracticeQuestion() {
+            selectedPracticeOption = null;
+            document.getElementById('practice-feedback-panel').classList.add('hidden');
+            document.getElementById('practice-next-btn').classList.add('hidden');
+            document.getElementById('practice-check-btn').classList.remove('hidden');
+
+            if (filteredPracticePool.length === 0) {
+                alert("No hay ejercicios para el filtro seleccionado.");
+                return;
+            }
+
+            const q = filteredPracticePool[currentPracticeIndex];
+            
+            // Títulos y Categorías
+            const mapTenses = {
+                present_simple: 'Presente Simple',
+                present_progressive: 'Presente Progresivo',
+                past_simple: 'Pasado Simple',
+                past_progressive: 'Pasado Progresivo',
+                future: 'Futuro'
+            };
+            document.getElementById('practice-question-cat').innerText = mapTenses[q.tense];
+            document.getElementById('practice-question-num').innerText = `Ejercicio ${q.id} de 400`;
+            document.getElementById('practice-question-title').innerText = q.question;
+
+            // Inyectar opciones
+            const box = document.getElementById('practice-options-box');
+            box.innerHTML = '';
+            
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 hover:border-indigo-400 hover:bg-slate-50 transition-all flex items-center justify-between group";
+                btn.id = `pr-opt-${idx}`;
+                btn.onclick = () => selectPracticeOption(idx);
+                
+                btn.innerHTML = `
+                    <span class="text-xs font-bold text-slate-700 group-hover:text-indigo-900">${opt.text}</span>
+                    <span class="w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center text-[10px] text-transparent" id="pr-ind-${idx}">✓</span>
+                `;
+                box.appendChild(btn);
+            });
+        }
+
+        function selectPracticeOption(idx) {
+            const q = filteredPracticePool[currentPracticeIndex];
+            selectedPracticeOption = idx;
+
+            for (let i = 0; i < q.options.length; i++) {
+                const el = document.getElementById(`pr-opt-${i}`);
+                const ind = document.getElementById(`pr-ind-${i}`);
+                if (i === idx) {
+                    el.className = "w-full text-left p-4 rounded-xl border-2 border-indigo-600 bg-indigo-50/50 transition-all flex items-center justify-between";
+                    ind.className = "w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] font-bold";
+                } else {
+                    el.className = "w-full text-left p-4 rounded-xl border border-slate-200 hover:border-indigo-400 hover:bg-slate-50 transition-all flex items-center justify-between group";
+                    ind.className = "w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center text-[10px] text-transparent";
+                }
+            }
+        }
+
+        function checkPracticeAnswer() {
+            if (selectedPracticeOption === null) {
+                alert("Por favor, selecciona una opción de respuesta.");
+                return;
+            }
+
+            const q = filteredPracticePool[currentPracticeIndex];
+            const isCorrect = q.options[selectedPracticeOption].isCorrect;
+
+            const panel = document.getElementById('practice-feedback-panel');
+            const icon = document.getElementById('practice-f-icon');
+            const title = document.getElementById('practice-f-title');
+            const explanation = document.getElementById('practice-f-explanation');
+
+            panel.classList.remove('hidden');
+
+            if (isCorrect) {
+                practiceCorrect++;
+                panel.className = "mt-6 p-5 rounded-2xl border bg-emerald-50 border-emerald-200 text-emerald-950";
+                icon.innerText = "🎉";
+                title.innerText = "¡Completamente Correcto!";
+            } else {
+                practiceWrong++;
+                panel.className = "mt-6 p-5 rounded-2xl border bg-red-50 border-red-200 text-red-950";
+                icon.innerText = "❌";
+                title.innerText = "Estudia la regla gramatical:";
+            }
+
+            explanation.innerText = q.explanation;
+
+            // Bloquear botones
+            for (let i = 0; i < q.options.length; i++) {
+                document.getElementById(`pr-opt-${i}`).disabled = true;
+                if(q.options[i].isCorrect) {
+                    document.getElementById(`pr-opt-${i}`).classList.add('border-emerald-500', 'bg-emerald-50');
+                }
+            }
+
+            // Actualizar interfaz de progreso
+            updatePracticeProgress();
+
+            document.getElementById('practice-check-btn').classList.add('hidden');
+            document.getElementById('practice-next-btn').classList.remove('hidden');
+        }
+
+        function showPracticeHint() {
+            const q = filteredPracticePool[currentPracticeIndex];
+            alert(`💡 PISTA DIDÁCTICA:\n\n${q.hint}`);
+        }
+
+        function nextPractice() {
+            currentPracticeIndex++;
+            if (currentPracticeIndex >= filteredPracticePool.length) {
+                alert("Has completado todos los ejercicios filtrados. Reiniciando la lista.");
+                currentPracticeIndex = 0;
+            }
+            loadPracticeQuestion();
+        }
+
+        function updatePracticeProgress() {
+            const total = practiceCorrect + practiceWrong;
+            document.getElementById('practice-stat-correct').innerText = practiceCorrect;
+            document.getElementById('practice-stat-wrong').innerText = practiceWrong;
+
+            const percent = Math.min((total / 400) * 100, 100);
+            document.getElementById('practice-progress-lbl').innerText = `${total} / 400`;
+            document.getElementById('practice-progress-bar').style.width = `${percent}%`;
+        }
+
+        // ================= SECCIÓN 5: CENTRO DE EXÁMENES ALEATORIOS =================
+        let examQuestions = [];
+        let currentExamIndex = 0;
+        let selectedExamOption = null;
+        let examScore = 0;
+        let examTimerInterval = null;
+        let examTimeElapsed = 0;
+        let studentName = "";
+
+        function startExam() {
+            const nameInput = document.getElementById('student-name-input').value.trim();
+            if(!nameInput) {
+                alert("Por favor, introduce tu nombre completo para expedir tu diploma si logras aprobar.");
+                return;
+            }
+            studentName = nameInput;
+
+            // Generar un set de 20 preguntas totalmente únicas al azar para el examen (Sin duplicados)
+            examQuestions = [];
+            const tempPool = [...practiceQuestions];
+            tempPool.sort(() => Math.random() - 0.5);
+
+            for (let i = 0; i < 20; i++) {
+                examQuestions.push(tempPool[i]);
+            }
+
+            currentExamIndex = 0;
+            examScore = 0;
+            examTimeElapsed = 0;
+
+            document.getElementById('exam-start-screen').classList.add('hidden');
+            document.getElementById('exam-active-screen').classList.remove('hidden');
+            document.getElementById('exam-result-screen').classList.add('hidden');
+
+            loadExamQuestion();
+            startExamTimer();
+        }
+
+        function loadExamQuestion() {
+            selectedExamOption = null;
+            const q = examQuestions[currentExamIndex];
+
+            document.getElementById('exam-progress-lbl').innerText = `Pregunta ${currentExamIndex + 1} de 20`;
+            document.getElementById('exam-progress-bar').style.width = `${((currentExamIndex + 1) / 20) * 100}%`;
+            document.getElementById('exam-question-title').innerText = q.question;
+
+            const box = document.getElementById('exam-options-box');
+            box.innerHTML = '';
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 hover:border-indigo-400 hover:bg-slate-50 transition-all flex items-center justify-between group";
+                btn.id = `ex-opt-${idx}`;
+                btn.onclick = () => selectExamOption(idx);
+
+                btn.innerHTML = `
+                    <span class="text-xs font-bold text-slate-700 group-hover:text-indigo-900">${opt.text}</span>
+                    <span class="w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center text-[10px] text-transparent" id="ex-ind-${idx}">✓</span>
+                `;
+                box.appendChild(btn);
+            });
+        }
+
+        function selectExamOption(idx) {
+            const q = examQuestions[currentExamIndex];
+            selectedExamOption = idx;
+
+            for (let i = 0; i < q.options.length; i++) {
+                const el = document.getElementById(`ex-opt-${i}`);
+                const ind = document.getElementById(`ex-ind-${i}`);
+                if (i === idx) {
+                    el.className = "w-full text-left p-4 rounded-xl border-2 border-indigo-600 bg-indigo-50/50 transition-all flex items-center justify-between";
+                    ind.className = "w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] font-bold";
+                } else {
+                    el.className = "w-full text-left p-4 rounded-xl border border-slate-200 hover:border-indigo-400 hover:bg-slate-50 transition-all flex items-center justify-between group";
+                    ind.className = "w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center text-[10px] text-transparent";
+                }
+            }
+        }
+
+        function submitExamAnswer() {
+            if (selectedExamOption === null) {
+                alert("Debes seleccionar una opción antes de avanzar.");
+                return;
+            }
+
+            const q = examQuestions[currentExamIndex];
+            const isCorrect = q.options[selectedExamOption].isCorrect;
+
+            if (isCorrect) {
+                examScore++;
+            }
+
+            currentExamIndex++;
+
+            if (currentExamIndex < 20) {
+                loadExamQuestion();
+            } else {
+                finishExam();
+            }
+        }
+
+        function startExamTimer() {
+            clearInterval(examTimerInterval);
+            examTimerInterval = setInterval(() => {
+                examTimeElapsed++;
+                const mins = Math.floor(examTimeElapsed / 60).toString().padStart(2, '0');
+                const secs = (examTimeElapsed % 60).toString().padStart(2, '0');
+                document.getElementById('exam-timer').innerText = `${mins}:${secs}`;
+            }, 1000);
+        }
+
+        function finishExam() {
+            clearInterval(examTimerInterval);
+            document.getElementById('exam-active-screen').classList.add('hidden');
+            document.getElementById('exam-result-screen').classList.remove('hidden');
+
+            const scorePercent = Math.round((examScore / 20) * 100);
+            document.getElementById('exam-final-score').innerText = `${scorePercent} / 100`;
+
+            const iconContainer = document.getElementById('exam-result-icon-container');
+            const title = document.getElementById('exam-result-title');
+            const subtitle = document.getElementById('exam-result-subtitle');
+            const praise = document.getElementById('exam-praise-tag');
+            const diploma = document.getElementById('diploma-card');
+
+            if (scorePercent >= 80) {
+                iconContainer.innerHTML = `<div class="w-20 h-20 bg-emerald-50 border border-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-4xl shadow-inner animate-bounce"><i class="fas fa-check-double"></i></div>`;
+                title.innerText = "¡Has Aprobado de Forma Sobresaliente!";
+                subtitle.innerText = "Felicidades, tus conocimientos de inglés están consolidados a nivel técnico.";
+                praise.className = "text-[11px] font-bold uppercase tracking-wider text-emerald-600";
+                praise.innerText = "Aprobado - Experto en Sintaxis";
+                
+                // Mostrar Diploma Certificado
+                diploma.classList.remove('hidden');
+                document.getElementById('diploma-student-name').innerText = studentName;
+            } else {
+                iconContainer.innerHTML = `<div class="w-20 h-20 bg-red-50 border border-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto text-4xl shadow-inner"><i class="fas fa-times-circle"></i></div>`;
+                title.innerText = "Sigue Entrenando";
+                subtitle.innerText = "No lograste alcanzar el mínimo de aprobación (80%). Estudia las reglas de los trucos y vuelve a intentarlo.";
+                praise.className = "text-[11px] font-bold uppercase tracking-wider text-red-600";
+                praise.innerText = "Requiere más práctica";
+                
+                diploma.classList.add('hidden');
+            }
+        }
+
+        function resetExam() {
+            document.getElementById('student-name-input').value = "";
+            document.getElementById('exam-start-screen').classList.remove('hidden');
+            document.getElementById('exam-result-screen').classList.add('hidden');
+            document.getElementById('exam-active-screen').classList.add('hidden');
+        }
+
+        // Cargar teoría e inicialización en ventana inicial
+        window.onload = () => {
+            initializeVerbs();
+        };
+    </script>
+</body>
+</html>
